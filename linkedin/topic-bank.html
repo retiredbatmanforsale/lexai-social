@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topic Bank — Puru Kathuria (Lex AI Labs)</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#161a21; --panel2:#1b2029; --ink:#e8ebf0; --muted:#9aa4b2;
+    --line:#2a313c; --accent:#5b8cff; --accent2:#7c5cff; --good:#33c98f; --warn:#ffb454;
+    --bad:#ff6b6b; --chip:#222a36; --code:#0b0e13; --maxw:880px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{display:grid; grid-template-columns:240px minmax(0,var(--maxw)); gap:40px; max-width:1200px; margin:0 auto; padding:40px 28px 120px;}
+  nav.toc{position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; font-size:13.5px;}
+  nav.toc .brand{font-weight:700; font-size:14px; letter-spacing:.02em; color:var(--ink); margin-bottom:4px;}
+  nav.toc .sub{color:var(--muted); font-size:12px; margin-bottom:16px;}
+  nav.toc a{display:block; color:var(--muted); text-decoration:none; padding:5px 10px; border-radius:7px; border-left:2px solid transparent;}
+  nav.toc a:hover{color:var(--ink); background:var(--panel);}
+  nav.toc a.lvl2{padding-left:22px; font-size:12.5px;}
+  main{min-width:0}
+  h1{font-size:30px; line-height:1.2; margin:0 0 6px;}
+  .goal{color:var(--muted); margin:0 0 4px;} .goal b{color:var(--ink)}
+  h2{font-size:20px; margin:40px 0 12px; padding-top:18px; border-top:1px solid var(--line); scroll-margin-top:24px;}
+  h2 .num{color:var(--accent); font-weight:700; margin-right:8px;}
+  h3{font-size:15.5px; margin:22px 0 10px; color:var(--accent2); scroll-margin-top:24px;}
+  p{margin:12px 0} a{color:var(--accent)} strong{color:#fff} em{color:#d7dce4}
+  code{background:var(--code); border:1px solid var(--line); padding:1px 6px; border-radius:5px; font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; color:#cdd6e3;}
+  .hero{background:linear-gradient(135deg,#1a2030,#15181f); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-top:8px;}
+  .callout{border-left:3px solid var(--accent); background:var(--panel); padding:12px 16px; border-radius:0 10px 10px 0; margin:16px 0; color:#dbe2ec;}
+  .callout.good{border-color:var(--good)} .callout.warn{border-color:var(--warn)} .callout.bad{border-color:var(--bad)}
+  blockquote{margin:16px 0; padding:12px 18px; border-left:3px solid var(--accent2); background:var(--panel); border-radius:0 10px 10px 0; color:#dbe2ec; font-style:italic;}
+  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; background:var(--panel); border-radius:10px; overflow:hidden;}
+  th,td{text-align:left; padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:var(--panel2); color:var(--ink); font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  tr:last-child td{border-bottom:none} td b,td strong{color:#fff}
+  ul.bul{padding-left:20px} ul.bul li{margin:8px 0}
+  ul.bul ul.bul{margin:6px 0}
+  .tag{display:inline-block; background:var(--chip); border:1px solid var(--line); border-radius:6px; padding:1px 8px; font-size:12.5px; color:#cdd6e3; margin:1px 2px;}
+  .series{border:1px solid var(--line); border-radius:12px; padding:4px 20px 16px; margin:18px 0; background:var(--panel);}
+  .series.s1{border-left:3px solid var(--good)} .series.s2{border-left:3px solid var(--accent)}
+  .series.s3{border-left:3px solid var(--good)} .series.s4{border-left:3px solid var(--accent2)}
+  .series.s5{border-left:3px solid var(--accent)}
+  .meta-row{font-size:12.5px; color:var(--muted); margin:8px 0 2px;}
+  .meta-row .k{color:var(--accent); font-weight:600;}
+  .badge{display:inline-block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:2px 8px; border-radius:20px; margin-left:6px;}
+  .badge.stock{background:rgba(51,201,143,.15); color:var(--good); border:1px solid rgba(51,201,143,.4)}
+  .badge.flow{background:rgba(91,140,255,.15); color:var(--accent); border:1px solid rgba(91,140,255,.4)}
+  .badge.semi{background:rgba(124,92,255,.15); color:var(--accent2); border:1px solid rgba(124,92,255,.4)}
+  .status-ok{color:var(--good); font-weight:700} .status-warn{color:var(--warn); font-weight:700} .status-bad{color:var(--bad); font-weight:700}
+  .recyc{color:var(--good); font-weight:600; font-size:12px}
+  .adv{color:var(--warn); font-size:12px}
+  .hybrid{color:var(--accent2); font-size:12px; font-style:italic}
+  footer{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px;}
+  @media (max-width:860px){
+    .wrap{grid-template-columns:1fr; padding:24px 18px 80px}
+    nav.toc{position:static; max-height:none; margin-bottom:20px; border-bottom:1px solid var(--line); padding-bottom:16px}
+  }
+  @media print{
+    body{background:#fff; color:#111} nav.toc{display:none} .wrap{display:block; max-width:none}
+    .hero,.callout,blockquote,table,.series{background:#fff!important; color:#111!important; border-color:#ccc!important}
+    th{background:#f0f0f0!important; color:#111!important} a{color:#0645ad}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="toc">
+  <div class="brand">Topic Bank</div>
+  <div class="sub">Puru Kathuria · Lex AI Labs</div>
+  <a href="#model">Stock vs Flow</a>
+  <a href="#s1">1 · Curriculum Explainers</a>
+  <a href="#s2">2 · Frontier News Response</a>
+  <a href="#s3">3 · Interview Readiness</a>
+  <a href="#s4">4 · Compensation Intel</a>
+  <a href="#s5">5 · Advice From the Top 1%</a>
+  <a href="#coverage">Coverage Snapshot</a>
+  <a href="#next">→ Dump Next</a>
+</nav>
+
+<main>
+  <h1>Topic Bank — Puru Kathuria <span style="color:var(--muted);font-weight:400;font-size:18px">(Lex AI Labs)</span></h1>
+  <div class="hero">
+    <p class="goal">The renewable reservoir that feeds <b>§4</b> of the SOP. Not a calendar — a backlog.</p>
+    <p class="goal"><b>Two-stage pipeline:</b> Puru dumps raw → this file enriches each into a tagged, lead-runnable entry.</p>
+  </div>
+
+  <h2 id="model"><span class="num">·</span>How topics are stored — STOCK vs FLOW</h2>
+  <table>
+    <thead><tr><th>Nature</th><th>What it is</th><th>How it's stored</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td><b>STOCK</b> <span class="badge stock">stock</span></td><td>static, evergreen, enumerable, recyclable</td><td>a <b>listed entry</b> with full tags</td><td>curriculum explainers, interview Q-bank, comp data</td></tr>
+      <tr><td><b>FLOW</b> <span class="badge flow">flow</span></td><td>a moving stream you can't pre-list</td><td>a <b>watcher</b>: sources + trigger + default angle + SLA</td><td>frontier-lab news, IPOs, "what X said this week"</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><b>Entry schema (STOCK):</b> <code>Intent × Topic × Format</code> | ICP | Hook · Angle · <b>Needs from Puru</b> · Truth-source · recyclable?<br>
+  <b>Watcher schema (FLOW):</b> Sources · Trigger · Default Intent+angle · Format · <b>Needs from Puru</b> (voice-note SLA) · Publish SLA</div>
+
+  <!-- SERIES 1 -->
+  <h2 id="s1"><span class="num">1</span>Curriculum Explainers <span class="badge stock">stock</span></h2>
+  <div class="meta-row"><span class="k">Intent:</span> Teach &nbsp;·&nbsp; <span class="k">PROF viz = our moat</span> &nbsp;·&nbsp; ICP1/2 &nbsp;·&nbsp; Format: explainer + PROF viz</div>
+  <p>The evergreen engine. Deep, recyclable, un-copyable because of PROF visualizations ("show what only you can show"). Also fuel for the §6 repost engine — bundle into "the N concepts every AI engineer must know" carousels.</p>
+  <blockquote>Every entry: Needs from Puru = the viz/screenshot + his one-line "why it matters" · Truth-source = standard ML (verify notation only).</blockquote>
+  <div class="series s1">
+  <ul class="bul">
+    <li><b>Gradient descent</b> — the pillar under most deep learning. Hook: "one idea powers nearly every neural net." <span class="recyc">recyclable ✓</span></li>
+    <li><b>Evolution: linear equation → sigmoid → neural network.</b> PROF visuals + screenshots. Hook: progression/story. <span class="recyc">recyclable ✓</span></li>
+    <li><b>The chain rule via a variable tree</b> — 1 in, 1 hidden, 1 out: <code>a1=σ(z1=w1x+b1)</code>, <code>a2=σ(z2=w2a1+b2)</code>, <code>loss=MSE</code>. Viz = variable dependency tree. Hook: "backprop is just one rule you learned in calculus." <span class="recyc">recyclable ✓</span></li>
+    <li><b>Weight / parameter sharing in CNNs.</b> PROF viz. Hook: "why a CNN sees a cat anywhere in the frame." <span class="recyc">recyclable ✓</span></li>
+    <li><b>Scaling laws in neural networks.</b> Excalifont viz. Hook: big-number. <span class="hybrid">(Provoke-flavored — doubles as a thesis.)</span> <span class="recyc">recyclable ✓</span></li>
+    <li><b>A "Moore's law" for training NNs</b> — cost down, performance doubling. Viz. Hook: big-number + comparison. <span class="hybrid">(Provoke-flavored.)</span> <span class="recyc">recyclable ✓</span></li>
+    <li><b>Hyper-dimensional space folding in CNNs</b> — 3D tensors (W×H×C) projected through millions of hyper-dim matrices carving non-linear decision boundaries. Viz. Hook: vivid mental-model. <span class="adv">(advanced)</span></li>
+    <li><b>The universal equation: <code>y = f(Wx + b)</code></b> — NN, CNN, RNN, Transformer are all chained parameterized functions; every architecture is a specialized structuring of linear + non-linear transforms. Viz. Hook: two-line contrarian flip ("they look different; they're the same machine"). <span class="hybrid">(Strong Provoke-Teach hybrid.)</span> <span class="recyc">recyclable ✓</span></li>
+    <li><b>Why RNNs broke</b> — the vanishing gradient problem. PROF vanishing-gradient viz. Hook: "the flaw that killed RNNs and birthed Transformers." <span class="recyc">recyclable ✓</span></li>
+    <li><b>Embeddings in a Transformer</b> — token + positional embeddings (older GPT architectures & "Attention Is All You Need"). PROF viz. Hook: explainer cold-open. <span class="recyc">recyclable ✓</span></li>
+    <li><b>Addition over concatenation for positional encodings</b> — PE added element-wise (not concatenated); nets learn to un-mix meaning + order. Concatenation keeps separate identity, can be geometrically superior in ViTs. Viz. Hook: "why add two different things together?" <span class="hybrid">(Provoke-Teach hybrid, advanced.)</span></li>
+  </ul>
+  <p style="color:var(--muted);font-size:13px;margin:6px 0 0"><em>Keep dumping curriculum here — your strongest and most recyclable series.</em></p>
+  </div>
+
+  <!-- SERIES 2 -->
+  <h2 id="s2"><span class="num">2</span>Frontier News Response <span class="badge flow">flow</span></h2>
+  <div class="meta-row"><span class="k">Intent:</span> Provoke (teardown) or Reach (riff)</div>
+  <p>Stored as <b>watchers</b>, not a list. The lead matches incoming news to a watcher and executes fast.</p>
+  <div class="series s2">
+  <ul class="bul">
+    <li><b>Watcher: Lab IPO / funding.</b>
+      <ul class="bul">
+        <li>Sources: TechCrunch, The Information, company blogs (Anthropic, OpenAI, xAI, Mistral, Sarvam…).</li>
+        <li>Trigger: an IPO filing / mega-raise / valuation milestone.</li>
+        <li>Default: <b>Provoke</b> — "what this means for <em>engineers</em>, not investors" (teardown, not a report).</li>
+        <li>Format: news-as-story. Needs from Puru: thesis (voice note, same day). Publish SLA: &lt;24h while hot.</li>
+        <li><em>Seeds already in mind:</em> Anthropic IPO, OpenAI IPO.</li>
+      </ul>
+    </li>
+    <li><b>Watcher: Model / product launch.</b>
+      <ul class="bul">
+        <li>Sources: lab release notes, HN front page. Trigger: a frontier model or dev-tool ships.</li>
+        <li>Default: <b>Provoke/Teach</b> — "what changes in how you build now." Format: story or explainer. SLA: &lt;48h.</li>
+      </ul>
+    </li>
+    <li><b>Watcher: Spicy industry moment / meme.</b>
+      <ul class="bul">
+        <li>Trigger: a moment the whole eng timeline is reacting to.</li>
+        <li>Default: <b>Reach</b> (capped ≤5%) — a riff/meme for recognition only. Needs from Puru: one-line angle. SLA: while it's live.</li>
+      </ul>
+    </li>
+  </ul>
+  </div>
+
+  <!-- SERIES 3 -->
+  <h2 id="s3"><span class="num">3</span>Interview Readiness <span class="badge semi">semi-stock</span></h2>
+  <div class="meta-row"><span class="k">Intent:</span> Teach &nbsp;·&nbsp; refresh each hiring cycle</div>
+  <p>Real questions asked in AI/ML interviews + how to think about them. Extremely <b>save-able</b> → repost-engine gold.</p>
+  <div class="series s3">
+  <ul class="bul">
+    <li>Q-bank template: <em>"Asked at [company]: [question]. Here's the 60-second answer + the trap."</em></li>
+    <li>Needs from Puru: the actual questions (his + sourced from his network) and the model answer.</li>
+    <li>Recyclable as carousels: "12 ML interview questions you'll get at [tier] companies."</li>
+    <li>FLOW sub-stream: new questions surfacing this hiring season → watcher on his network/DMs.</li>
+  </ul>
+  </div>
+
+  <!-- SERIES 4 -->
+  <h2 id="s4"><span class="num">4</span>Compensation Intel <span class="badge semi">semi-stock</span></h2>
+  <div class="meta-row"><span class="k">Intent:</span> Teach / Prove &nbsp;·&nbsp; refresh quarterly</div>
+  <p>AI/ML engineer salaries &amp; comp at top tech in <b>India / Bangalore</b>. High broad reach + very save-able.</p>
+  <div class="series s4">
+  <ul class="bul">
+    <li>Angle: levels, bands, what moves you between them; "what a [level] AI/ML eng actually earns in Bangalore."</li>
+    <li>Needs from Puru: real numbers (his data + verified sources — levels.fyi, offers in his network).</li>
+    <li>Truth-source: <b>must cite</b> — comp claims get fact-checked hard. Verify before posting.</li>
+    <li>Recyclable: refresh the same template quarterly.</li>
+  </ul>
+  </div>
+
+  <!-- SERIES 5 -->
+  <h2 id="s5"><span class="num">5</span>Advice From the Top 1% <span class="badge semi">semi-flow</span></h2>
+  <div class="meta-row"><span class="k">Intent:</span> Provoke / Teach</div>
+  <p>What a Karpathy / a Google staff engineer / a top-1% tech person would tell an engineer or AI/ML engineer <b>today</b>: what to learn, how to prep for interviews, how to think about the career-ladder learning graph. Borrowed authority → SPCL credibility.</p>
+  <div class="series s5">
+  <ul class="bul">
+    <li><b>STOCK version:</b> synthesized evergreen advice ("if a staff eng mentored you for an hour, here's what they'd say").</li>
+    <li><b>FLOW version — Watcher:</b> when Karpathy / a notable staff eng posts advice, react with Puru's translation for <em>our</em> ICP. Sources: their X/blogs. Needs from Puru: his take + what he'd add/disagree with. SLA: &lt;48h.</li>
+    <li>Truth-source: attribute quotes to who said them; verify verbatim (per §5 / Hormozi "state facts").</li>
+  </ul>
+  </div>
+
+  <!-- COVERAGE -->
+  <h2 id="coverage"><span class="num">·</span>Coverage Snapshot <span style="font-size:13px;color:var(--muted)">vs the Intent target-mix</span></h2>
+  <table>
+    <thead><tr><th>Intent</th><th>Target</th><th>Current stock in this bank</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><b>Teach</b></td><td>45%</td><td>Series 1 (deep), 3, 4</td><td><span class="status-ok">✅ Over-stocked.</span> Strongest area.</td></tr>
+      <tr><td><b>Provoke</b></td><td>30%</td><td>Series 2 (watchers), 5, + 4 contrarian-flavored explainers</td><td><span class="status-warn">⚠️ Thin as STOCK.</span> Depends on flow + hot takes.</td></tr>
+      <tr><td><b>Prove</b></td><td>10%</td><td>Series 4 (comp), IILM, launches</td><td><span class="status-warn">⚠️ Thin</span> — needs Puru's wins/case studies.</td></tr>
+      <tr><td><b>Relate</b></td><td>10%</td><td>—</td><td><span class="status-bad">❌ EMPTY.</span> No personal/vulnerable stories yet.</td></tr>
+      <tr><td><b>Reach</b></td><td>5%</td><td>Series 2 riff watcher</td><td><span class="status-ok">✅ Capped, fine.</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="next"><span class="num">→</span>The most valuable thing to dump next</h2>
+  <div class="callout warn">Your brain-dump is ~90% <b>Teach</b> (curriculum). The authority-led mix you chose needs <b>30% Provoke + 10% Relate</b>. The highest-leverage add is NOT more curriculum — it's:</div>
+  <ul class="bul">
+    <li><b>Hot takes / contrarian theses (Provoke)</b> — your spiky opinions on where AI eng is going, what's overrated, what everyone gets wrong. Mark these <code>!</code> when you dump.</li>
+    <li><b>Personal / vulnerable stories (Relate)</b> — "I noticed a pattern at Google…", failures, what building Lex taught you. These drive the most <em>comments</em> (strongest algo signal) — and you have <b>zero</b> so far. Mark these <code>*</code>.</li>
+  </ul>
+  <p style="color:var(--muted)"><em>Drop those in and this bank becomes balanced to the mix.</em></p>
+
+  <footer>
+    Feeds <code>LINKEDIN-SOP.md</code> §4 (daily Intent slot-fill) and §8 (weekly Intent-mix audit).
+    <br><br>This HTML is generated from <code>topic-bank.md</code> — edit the Markdown as the source of truth, then re-render.
+  </footer>
+</main>
+</div>
+</body>
+</html>
