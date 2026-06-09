@@ -22,20 +22,35 @@ Every ICP cares about this same question at a different altitude:
 
 ---
 
-## 1. The Lane & The Three Pillars
+## 1. The Lane & The 3-Axis Model
 
 **Our lane:** AI-native software engineering — the craft, the career, the vision.
 Where Puru has unfair authority: **ex-Google + FDE + building Lex AI Labs.**
 We do NOT post: generic AI news commentary (no edge), DSA/interview-prep (saturated, Sameer owns it), motivational fluff.
 
-| Pillar | % of posts | Purpose | Primary ICP |
-|--------|-----------|---------|-------------|
-| **Craft** | ~45% | How to actually DO AI-powered eng (agent workflows, reviewing 3x code, shipping 2x, design docs with AI) | ICP1, ICP2 |
-| **Career / Identity** | ~25% | What's an FDE / AI-native engineer, skills that matter now, how to break in | ICP1, ICP2 |
-| **Vision / Opinion** | ~20% | Contrarian theses, company-move teardowns (NVIDIA, Anthropic), where AI eng is going | ICP3, ICP4 |
-| **Personal / Vulnerable** | ~10% | First-person stories ("I noticed a pattern at Google…") — drives comments, humanizes | All |
+Every post is tagged on **three orthogonal axes** (plus ICP + hook). The axes don't overlap and nothing escapes them — a draft that can't be tagged on all three is incoherent → kill it. **Axis 1 (Intent) drives topic selection and the weekly mix.**
 
-**Rule:** Every post is tagged `(pillar) × (ONE named ICP) × (one hook mold)`. If a draft can't name its single ICP, kill it.
+### Axis 1 — INTENT (the job the post does) — *the primary axis*
+
+| Intent | Job | Lives here | Serves |
+|--------|-----|-----------|--------|
+| **Teach** | change a behavior | explainers, algorithm explainers, complex-topic explainers, craft how-tos (**← PROF viz, our moat**) | ICP1/2 — conversion engine |
+| **Provoke** | shift a belief | contrarian theses, AI-strategy teardowns (NVIDIA, Anthropic), predictions | ICP3/4 — the "AI visionary" aura |
+| **Prove** | demonstrate | wins, launches, **partnerships (IILM)**, case studies | SPCL status/credibility, trust |
+| **Relate** | humanize | first-person vulnerable, lessons, behind-the-scenes | comments, likeness |
+| **Reach** | get seen | memes, hot-news riffs | top-of-funnel recognition **ONLY — thin, capped, never the main act** |
+
+**Weekly Intent target-mix (authority-led):** **Teach 45 / Provoke 30 / Prove 10 / Relate 10 / Reach 5.**
+Of ~6 posts/week ≈ Teach ~3, Provoke ~2, Prove ~1/wk, Relate ~1/wk, Reach sprinkled & capped. (Tracked in §8.)
+
+### Axis 2 — TOPIC (subject matter / the old pillars)
+**Craft** · **Career/Identity** · **Vision** · **AI-news** · **Personal.** Narrow to win; only widen deliberately (random pairings hurt the brand).
+
+### Axis 3 — FORMAT (mode + asset)
+explainer-with-**PROF-viz** · carousel · text · **story-narrative** · meme · screenshot · whiteboard-video.
+> Storytelling is a **format available to any intent**, not a category. "News as story" = `Provoke/Reach × AI-news × story`. PROF viz is the **asset that makes a Teach post un-copyable** ("show what only you can show") — not a bucket.
+
+**Rule:** Every post is tagged `Intent × Topic × Format` + `(ONE named ICP)` + `(one hook mold)`. If any axis is unnameable, or the ICP is unnameable, kill it.
 
 ---
 
@@ -65,7 +80,7 @@ Inconsistency is the #1 account killer. The breakout in our benchmark (Sameer) c
 
 ## 4. Daily Checklist (the writer/scheduler runs this every day)
 
-1. **Pick** one item from the Topic Bank. Confirm its tag: `pillar × ICP × hook mold`.
+1. **Pick** one item from the Topic Bank to fill the day's **Intent slot** (follow the week's running tally vs the §1 mix — Teach 45 / Provoke 30 / Prove 10 / Relate 10 / Reach 5; pick whichever Intent is most *behind* target). Confirm its full tag: `Intent × Topic × Format` + `ONE named ICP` + `hook mold`.
 2. **Draft** to the Pre-Publish Gate (§5). One idea only.
 3. **Hook** — open with a mold from the Hook Library (§7). The first line is 80% of the job.
 4. **Image** — attach per §5.B. Never default to text-only.
@@ -138,7 +153,8 @@ The agent must pass **EVERY** box below before scheduling. Two layers: **A) Subs
 - **PRIMARY: reposts** (follower-graph expansion) and **follower delta**
 - **SECONDARY: comments** (algo signal), saves, profile views, DMs from ICP2/3/4
 - **IGNORE as a goal:** raw likes
-- Weekly: which pillar / hook mold / image type printed reposts? Double down. Kill what didn't.
+- **Intent-mix audit (every week):** tally the week's posts by Intent and compare to target **Teach 45 / Provoke 30 / Prove 10 / Relate 10 / Reach 5**. Drifting toward Teach-only or Reach-heavy is the early-warning sign — correct next week's slots in §4. (Reach must stay ≤5% / capped; if it creeps up, RPM-equivalent quality is leaking.)
+- Weekly: which **Intent / Topic / Format** / hook mold / image type printed reposts and right-ICP engagement? Double down. Kill what didn't.
 - Expect a flat early stretch. Do NOT change the lane in response to flat weeks — only change format/hook.
 
 ---

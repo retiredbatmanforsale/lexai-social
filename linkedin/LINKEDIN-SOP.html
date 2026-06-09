@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LinkedIn SOP — Puru Kathuria (Lex AI Labs)</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#161a21; --panel2:#1b2029; --ink:#e8ebf0; --muted:#9aa4b2;
+    --line:#2a313c; --accent:#5b8cff; --accent2:#7c5cff; --good:#33c98f; --warn:#ffb454;
+    --bad:#ff6b6b; --chip:#222a36; --code:#0b0e13;
+    --maxw:880px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{display:grid; grid-template-columns:240px minmax(0,var(--maxw)); gap:40px; max-width:1200px; margin:0 auto; padding:40px 28px 120px;}
+  /* Sidebar TOC */
+  nav.toc{position:sticky; top:24px; align-self:start; max-height:calc(100vh - 48px); overflow:auto; font-size:13.5px;}
+  nav.toc .brand{font-weight:700; font-size:14px; letter-spacing:.02em; color:var(--ink); margin-bottom:4px;}
+  nav.toc .sub{color:var(--muted); font-size:12px; margin-bottom:16px;}
+  nav.toc a{display:block; color:var(--muted); text-decoration:none; padding:5px 10px; border-radius:7px; border-left:2px solid transparent;}
+  nav.toc a:hover{color:var(--ink); background:var(--panel);}
+  nav.toc a.lvl2{padding-left:22px; font-size:12.5px;}
+  main{min-width:0}
+  /* Headings */
+  h1{font-size:30px; line-height:1.2; margin:0 0 6px;}
+  .goal{color:var(--muted); margin:0 0 4px;}
+  .goal b{color:var(--ink)}
+  h2{font-size:21px; margin:44px 0 14px; padding-top:18px; border-top:1px solid var(--line); scroll-margin-top:24px;}
+  h2 .num{color:var(--accent); font-weight:700; margin-right:8px;}
+  h3{font-size:16px; margin:24px 0 10px; color:var(--accent2); scroll-margin-top:24px;}
+  p{margin:12px 0}
+  a{color:var(--accent)}
+  strong{color:#fff}
+  em{color:#d7dce4}
+  code{background:var(--code); border:1px solid var(--line); padding:1px 6px; border-radius:5px; font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; color:#cdd6e3;}
+  /* Hero */
+  .hero{background:linear-gradient(135deg,#1a2030,#15181f); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-top:8px;}
+  .principle{margin:10px 0 0; color:var(--muted)}
+  .principle b{color:var(--ink)}
+  /* Callouts */
+  .callout{border-left:3px solid var(--accent); background:var(--panel); padding:12px 16px; border-radius:0 10px 10px 0; margin:16px 0; color:#dbe2ec;}
+  .callout.good{border-color:var(--good)}
+  .callout.warn{border-color:var(--warn)}
+  .callout.bad{border-color:var(--bad)}
+  blockquote{margin:16px 0; padding:12px 18px; border-left:3px solid var(--accent2); background:var(--panel); border-radius:0 10px 10px 0; color:#dbe2ec; font-style:italic;}
+  .northstar{font-size:18px; font-style:italic; color:#fff; text-align:center; padding:18px;}
+  /* Tables */
+  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; background:var(--panel); border-radius:10px; overflow:hidden;}
+  th,td{text-align:left; padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:var(--panel2); color:var(--ink); font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  tr:last-child td{border-bottom:none}
+  td b,td strong{color:#fff}
+  /* Intent mix box */
+  .mixbox{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0; padding:18px; background:linear-gradient(135deg,#1c2333,#171b24); border:1px solid var(--line); border-radius:12px;}
+  .mixbox .label{flex-basis:100%; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:2px;}
+  .pill{flex:1; min-width:120px; background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:12px 14px;}
+  .pill .pct{font-size:24px; font-weight:800; color:#fff; line-height:1;}
+  .pill .nm{font-size:13px; color:var(--accent); font-weight:600; margin-top:4px;}
+  .pill .ct{font-size:11.5px; color:var(--muted); margin-top:3px;}
+  .pill.teach{border-top:3px solid var(--good)}
+  .pill.provoke{border-top:3px solid var(--accent)}
+  .pill.prove{border-top:3px solid var(--accent2)}
+  .pill.relate{border-top:3px solid var(--warn)}
+  .pill.reach{border-top:3px solid var(--bad)}
+  /* Checklists */
+  ul.check{list-style:none; padding:0; margin:14px 0;}
+  ul.check li{position:relative; padding:7px 8px 7px 34px; border-bottom:1px solid var(--line); font-size:14.5px;}
+  ul.check li:before{content:"☐"; position:absolute; left:8px; top:6px; color:var(--accent); font-size:16px;}
+  ul.check li:last-child{border-bottom:none}
+  ol{padding-left:22px} ol li{margin:7px 0}
+  ul.bul{padding-left:20px} ul.bul li{margin:7px 0}
+  .sub-ol{margin:6px 0 6px 0; padding-left:20px; font-size:13.5px; color:var(--muted)}
+  /* misc */
+  .tag{display:inline-block; background:var(--chip); border:1px solid var(--line); border-radius:6px; padding:1px 8px; font-size:12.5px; color:#cdd6e3; margin:1px 2px;}
+  .role{font-weight:700; color:#fff}
+  footer{margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px;}
+  .layer-a{border-left:3px solid var(--good); padding-left:14px; margin:10px 0;}
+  .layer-b{border-left:3px solid var(--warn); padding-left:14px; margin:10px 0;}
+  @media (max-width:860px){
+    .wrap{grid-template-columns:1fr; padding:24px 18px 80px}
+    nav.toc{position:static; max-height:none; margin-bottom:20px; border-bottom:1px solid var(--line); padding-bottom:16px}
+  }
+  @media print{
+    body{background:#fff; color:#111}
+    nav.toc{display:none}
+    .wrap{display:block; max-width:none}
+    .hero,.callout,blockquote,table,.mixbox,.pill{background:#fff!important; color:#111!important; border-color:#ccc!important}
+    th{background:#f0f0f0!important; color:#111!important}
+    a{color:#0645ad}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="toc">
+  <div class="brand">LinkedIn SOP</div>
+  <div class="sub">Puru Kathuria · Lex AI Labs</div>
+  <a href="#north-star">0 · The North Star</a>
+  <a href="#axes">1 · The 3-Axis Model</a>
+  <a href="#axes" class="lvl2">↳ Intent · Topic · Format</a>
+  <a href="#roles">2 · Roles</a>
+  <a href="#rhythm">3 · Weekly Rhythm</a>
+  <a href="#daily">4 · Daily Checklist</a>
+  <a href="#gate">5 · Pre-Publish Gate</a>
+  <a href="#gate" class="lvl2">↳ A · Substance</a>
+  <a href="#gate" class="lvl2">↳ B · Format</a>
+  <a href="#repost">6 · The Repost Engine</a>
+  <a href="#hooks">7 · Hook Library</a>
+  <a href="#metrics">8 · Metrics</a>
+  <a href="#kill">9 · Kill Criteria</a>
+</nav>
+
+<main>
+  <h1>LinkedIn SOP — Puru Kathuria <span style="color:var(--muted);font-weight:400;font-size:18px">(Lex AI Labs)</span></h1>
+  <div class="hero">
+    <p class="goal"><b>Goal:</b> Grow Puru Kathuria into the default thought leader on <b>AI-native software engineering</b> — 9,100 → 20,000 followers, then beyond.</p>
+    <p class="principle"><b>Operating principle:</b> ONE lane, served at four altitudes. We never drift.</p>
+  </div>
+
+  <!-- 0 -->
+  <h2 id="north-star"><span class="num">0</span>The North Star <span style="font-size:13px;color:var(--muted)">(read every day)</span></h2>
+  <div class="northstar">“AI is rewriting what software engineering is. Who survives it, and how?”</div>
+  <p>Every ICP cares about this same question at a different altitude:</p>
+  <table>
+    <thead><tr><th>ICP</th><th>Who</th><th>What they want</th><th>How we serve</th></tr></thead>
+    <tbody>
+      <tr><td><b>ICP1</b> (volume)</td><td>Eng undergrads + working devs (5–150L)</td><td>Break in / don't get left behind</td><td>Craft + Career posts. This ICP drives follower count.</td></tr>
+      <tr><td><b>ICP2</b></td><td>VP/Dir Eng at service &amp; lower-tier product firms</td><td>Make their team AI-native, prove it to clients</td><td>Craft posts on team productivity, AI-powered SDLC</td></tr>
+      <tr><td><b>ICP3</b></td><td>Leaders at Google/MSFT/Amzn/Sarvam/top labs</td><td>(We want to look like) an AI visionary worth collaborating with</td><td>Vision/Opinion posts + DMs</td></tr>
+      <tr><td><b>ICP4</b></td><td>VC / Dean / Director / HoD</td><td>Campus license, Prof-as-credit, faculty upskilling</td><td>Aura from posts + direct outreach</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><b>Posts win ICP1 at scale. ICP2 follows the craft. ICP3/ICP4 are NOT won by posts</b> — they're won by the cumulative aura PLUS direct DMs/comments. Posts are top-of-funnel; close those in the inbox.</div>
+
+  <!-- 1 -->
+  <h2 id="axes"><span class="num">1</span>The Lane &amp; The 3-Axis Model</h2>
+  <p><b>Our lane:</b> AI-native software engineering — the craft, the career, the vision. Where Puru has unfair authority: <b>ex-Google + FDE + building Lex AI Labs.</b></p>
+  <div class="callout bad">We do NOT post: generic AI news commentary (no edge), DSA/interview-prep (saturated, Sameer owns it), motivational fluff.</div>
+  <p>Every post is tagged on <b>three orthogonal axes</b> (plus ICP + hook). The axes don't overlap and nothing escapes them — a draft that can't be tagged on all three is incoherent → kill it. <b>Axis 1 (Intent) drives topic selection and the weekly mix.</b></p>
+
+  <h3 id="axis1">Axis 1 — INTENT (the job the post does) · <em>the primary axis</em></h3>
+  <table>
+    <thead><tr><th>Intent</th><th>Job</th><th>Lives here</th><th>Serves</th></tr></thead>
+    <tbody>
+      <tr><td><b>Teach</b></td><td>change a behavior</td><td>explainers, algorithm explainers, complex-topic explainers, craft how-tos (<b>← PROF viz, our moat</b>)</td><td>ICP1/2 — conversion engine</td></tr>
+      <tr><td><b>Provoke</b></td><td>shift a belief</td><td>contrarian theses, AI-strategy teardowns (NVIDIA, Anthropic), predictions</td><td>ICP3/4 — the "AI visionary" aura</td></tr>
+      <tr><td><b>Prove</b></td><td>demonstrate</td><td>wins, launches, <b>partnerships (IILM)</b>, case studies</td><td>SPCL status/credibility, trust</td></tr>
+      <tr><td><b>Relate</b></td><td>humanize</td><td>first-person vulnerable, lessons, behind-the-scenes</td><td>comments, likeness</td></tr>
+      <tr><td><b>Reach</b></td><td>get seen</td><td>memes, hot-news riffs</td><td>top-of-funnel recognition <b>ONLY — thin, capped, never the main act</b></td></tr>
+    </tbody>
+  </table>
+
+  <div class="mixbox">
+    <div class="label">Weekly Intent target-mix (authority-led) · of ~6 posts/week</div>
+    <div class="pill teach"><div class="pct">45%</div><div class="nm">Teach</div><div class="ct">~3 / wk</div></div>
+    <div class="pill provoke"><div class="pct">30%</div><div class="nm">Provoke</div><div class="ct">~2 / wk</div></div>
+    <div class="pill prove"><div class="pct">10%</div><div class="nm">Prove</div><div class="ct">~1 / wk</div></div>
+    <div class="pill relate"><div class="pct">10%</div><div class="nm">Relate</div><div class="ct">~1 / wk</div></div>
+    <div class="pill reach"><div class="pct">5%</div><div class="nm">Reach</div><div class="ct">sprinkled, capped</div></div>
+  </div>
+
+  <h3 id="axis2">Axis 2 — TOPIC (subject matter / the old pillars)</h3>
+  <p><span class="tag">Craft</span> <span class="tag">Career/Identity</span> <span class="tag">Vision</span> <span class="tag">AI-news</span> <span class="tag">Personal</span> &nbsp;— Narrow to win; only widen deliberately (random pairings hurt the brand).</p>
+
+  <h3 id="axis3">Axis 3 — FORMAT (mode + asset)</h3>
+  <p><span class="tag">explainer-with-PROF-viz</span> <span class="tag">carousel</span> <span class="tag">text</span> <span class="tag">story-narrative</span> <span class="tag">meme</span> <span class="tag">screenshot</span> <span class="tag">whiteboard-video</span></p>
+  <blockquote>Storytelling is a <b>format available to any intent</b>, not a category. "News as story" = <code>Provoke/Reach × AI-news × story</code>. PROF viz is the <b>asset that makes a Teach post un-copyable</b> ("show what only you can show") — not a bucket.</blockquote>
+  <div class="callout"><b>Rule:</b> Every post is tagged <code>Intent × Topic × Format</code> + <code>(ONE named ICP)</code> + <code>(one hook mold)</code>. If any axis is unnameable, or the ICP is unnameable — kill it.</div>
+
+  <!-- 2 -->
+  <h2 id="roles"><span class="num">2</span>Roles — who does what</h2>
+  <table>
+    <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+    <tbody>
+      <tr><td><span class="role">Puru</span></td><td>The OPINION. Drops 5-min voice notes (raw takes from his actual work/week). Final approval on every post.</td></tr>
+      <tr><td><span class="role">Writer</span></td><td>PACKAGING — turns voice notes + topic bank into format-compliant drafts. Does NOT invent opinions.</td></tr>
+      <tr><td><span class="role">Designer</span></td><td>The image (see §5 — recognizable face / screenshot / meme).</td></tr>
+      <tr><td><span class="role">Scheduler</span></td><td>Maintains the 5-post buffer, schedules, runs the daily engagement block, weekly metrics.</td></tr>
+    </tbody>
+  </table>
+  <blockquote>The team's job is packaging, not originating opinion. The thesis is always Puru's.</blockquote>
+
+  <!-- 3 -->
+  <h2 id="rhythm"><span class="num">3</span>Weekly Rhythm <span style="font-size:13px;color:var(--muted)">(the anti-inconsistency engine)</span></h2>
+  <div class="callout warn">Inconsistency is the #1 account killer. The breakout in our benchmark (Sameer) came at <b>month 8–9</b> — surviving the flat early stretch IS the skill. Gaps reset that clock.</div>
+  <ul class="bul">
+    <li><b>Batch day (e.g. Monday):</b> Puru records 5–7 voice notes. Writer drafts the week. Designer queues images.</li>
+    <li><b>Buffer rule:</b> ALWAYS keep ≥5 finished posts scheduled ahead. A busy week never breaks the streak.</li>
+    <li><b>Cadence:</b> ~6 posts/week, <b>Mon–Sat.</b> Sunday off or 1 light personal post.</li>
+    <li><b>Recycling calendar:</b> re-run a save-able "resource list" template every <b>2–3 weeks</b> (the repost engine — see §6).</li>
+  </ul>
+
+  <!-- 4 -->
+  <h2 id="daily"><span class="num">4</span>Daily Checklist <span style="font-size:13px;color:var(--muted)">(the writer/scheduler runs this every day)</span></h2>
+  <ol>
+    <li><b>Pick</b> one item from the Topic Bank to fill the day's <b>Intent slot</b> (follow the week's running tally vs the §1 mix — Teach 45 / Provoke 30 / Prove 10 / Relate 10 / Reach 5; pick whichever Intent is most <em>behind</em> target). Confirm its full tag: <code>Intent × Topic × Format</code> + <code>ONE named ICP</code> + <code>hook mold</code>.</li>
+    <li><b>Draft</b> to the Pre-Publish Gate (§5). One idea only.</li>
+    <li><b>Hook</b> — open with a mold from the Hook Library (§7). The first line is 80% of the job.</li>
+    <li><b>Image</b> — attach per §5.B. Never default to text-only.</li>
+    <li><b>Run the §5 Pre-Publish Gate</b> — every box, both layers. Any miss → fix or kill, pick another.</li>
+    <li><b>Puru approves</b> (voice/opinion must ring true).</li>
+    <li><b>Schedule</b> into the buffer slot.</li>
+    <li><b>Engage block (20–30 min):</b> comment on 5–10 ICP3/ICP4 accounts; reply to EVERY comment on our own posts within the first 60 min (comments = strongest algo signal).</li>
+  </ol>
+
+  <!-- 5 -->
+  <h2 id="gate"><span class="num">5</span>Pre-Publish Gate <span style="font-size:13px;color:var(--muted)">(hard checklist — non-negotiable)</span></h2>
+  <p>The agent must pass <b>EVERY</b> box below before scheduling. Two layers: <b>A) Substance</b> (does the post earn the right to exist) and <b>B) Format</b> (does it land). A miss in either layer = kill or fix. Principles behind each gate live in <code>../hormozi/HORMOZI-PRINCIPLES.md</code>.</p>
+
+  <div class="layer-a">
+  <h3>A. Substance gates <span style="color:var(--muted);font-weight:400">(Hormozi)</span></h3>
+  <ul class="check">
+    <li><b>Pairing named</b> — states the <em>good outcome</em> this post pairs Puru with, and the <em>one named ICP</em> who likes that outcome. (Brand = deliberate pairing through an outcome. Pair toward us, never with something the ICP dislikes.)</li>
+    <li><b>Educates, not entertains</b> — names the specific behavior/belief it changes. No viral-for-its-own-sake. <em>All views aren't equal; education viewers are our people.</em></li>
+    <li><b>For-you, not for-us</b> — made for the ICP, not internal/team taste.</li>
+    <li><b>On-lane / narrow</b> — sits in AI-native engineering (or a <em>deliberate</em> adjacent widen, never a random one).</li>
+    <li><b>Clear, not vague</b> — hook says <em>exactly</em> what the reader gets. No curiosity-gap bait.</li>
+    <li><b>Proof · Promise · Plan</b> in the first ~3 lines (lead with <b>Proof</b> — Puru's ex-Google/FDE/Lex credibility — because the reader's silent first question is "why should I listen to you?").</li>
+    <li><b>Assume nothing</b> — identifier in the hook (role/credential &gt; name), self-intro, why-listen, and <b>no unexplained inside jokes/references</b>. Every viewer is new.</li>
+    <li><b>SPCL present</b> — demonstrates <b>S</b>tatus + (<b>P</b>ower or <b>C</b>redibility), and carries <b>L</b>ikeness (sounds like the real Puru). Only make a request where Puru's SPCL is high (AI/eng — not off-domain).</li>
+    <li><b>Designed for the right metric</b> — built to earn <b>reach × right-ICP-engagement</b> (reshares / saves / comments-from-engineers / qualified DMs / opt-ins), NOT raw likes. <em>Likes ain't cash.</em></li>
+  </ul>
+  </div>
+
+  <div class="layer-b">
+  <h3>B. Format gates <span style="color:var(--muted);font-weight:400">(our own data: 147-word NVIDIA post → 56k impressions; 369-word post → 350)</span></h3>
+  <ul class="check">
+    <li><b>~150 words</b> (~780–840 chars), <b>8–13 short paragraphs</b>, 1–2 sentences each</li>
+    <li>Blank line between paragraphs (heavy white space, scannable)</li>
+    <li>~35–40s read</li>
+    <li>Lead with a concrete story/hook in line 1; <b>message &gt; production</b> (clarity beats effects)</li>
+    <li>One idea per line</li>
+    <li>End on a punchy, quotable <b>mic-drop</b> line</li>
+    <li><b>Pair with an image</b> — order of preference:
+      <ol class="sub-ol">
+        <li>Clean photo of a <b>recognizable face</b> (Jensen drove the 56k winner; use the subject's face for person-posts)</li>
+        <li>Screenshot with emotion (offer letter, Reddit/X success story, real product UI)</li>
+        <li>Borrowed dev meme</li>
+        <li>AI-photoreal scene with the hook painted in + brand logos</li>
+      </ol>
+    </li>
+    <li><b>Verify</b> every public stat/quote before posting (state facts, tell the truth). Attribute anecdotes to the person who tells them — don't quote third parties verbatim.</li>
+  </ul>
+  </div>
+
+  <!-- 6 -->
+  <h2 id="repost"><span class="num">6</span>The Repost Engine <span style="font-size:13px;color:var(--muted)">(how we actually grow followers)</span></h2>
+  <div class="callout good"><b>Reposts &gt; likes.</b> Each repost exposes us to a NEW follower graph. Likes are vanity.</div>
+  <ul class="bul">
+    <li>Build <b>2–3 evergreen save-able templates</b> in our lane, e.g.:
+      <ul class="bul">
+        <li><em>"If I were learning AI-native engineering from scratch in 2026, study these 30 resources: 1… 2…"</em></li>
+        <li><em>"The 12 things a developer must do to go from AI-ready to AI-native: 1… 2…"</em></li>
+        <li><em>"7 agent workflows that 2x'd how much code my team ships: 1… 2…"</em></li>
+      </ul>
+    </li>
+    <li>Re-run each template every <b>2–3 weeks</b> (Sameer ran ONE template 9× → 8–148 reposts each time).</li>
+    <li>Design posts to be <b>shared/saved</b>, not just liked: lists, frameworks, screenshots.</li>
+  </ul>
+
+  <!-- 7 -->
+  <h2 id="hooks"><span class="num">7</span>Hook Library <span style="font-size:13px;color:var(--muted)">(steal these molds)</span></h2>
+  <ul class="bul">
+    <li><b>Big-number + comparison:</b> "NVIDIA just did $X. Here's what most engineers missed."</li>
+    <li><b>Two-line contrarian flip:</b> "Writing code is no longer the job. Reviewing AI's code is."</li>
+    <li><b>Second-person cold-open:</b> "You're in a design review and the AI already wrote the service…" <em>(highest mean engagement)</em></li>
+    <li><b>First-person vulnerable:</b> "I noticed a pattern at Google before I left…" <em>(drives comments)</em></li>
+    <li><b>Salary/stakes anchor:</b> "The engineers who learn this will out-earn the ones who don't by 2027."</li>
+    <li><b>Question hook:</b> "What actually separates an AI-native engineer from an AI-ready one?"</li>
+  </ul>
+
+  <!-- 8 -->
+  <h2 id="metrics"><span class="num">8</span>Metrics <span style="font-size:13px;color:var(--muted)">(what we track — weekly review)</span></h2>
+  <ul class="bul">
+    <li><b>PRIMARY:</b> reposts (follower-graph expansion) and <b>follower delta</b></li>
+    <li><b>SECONDARY:</b> comments (algo signal), saves, profile views, DMs from ICP2/3/4</li>
+    <li><b>IGNORE as a goal:</b> raw likes</li>
+    <li><b>Intent-mix audit (every week):</b> tally the week's posts by Intent and compare to target <b>Teach 45 / Provoke 30 / Prove 10 / Relate 10 / Reach 5</b>. Drifting toward Teach-only or Reach-heavy is the early-warning sign — correct next week's slots in §4. (Reach must stay ≤5% / capped; if it creeps up, RPM-equivalent quality is leaking.)</li>
+    <li>Weekly: which <b>Intent / Topic / Format</b> / hook mold / image type printed reposts and right-ICP engagement? Double down. Kill what didn't.</li>
+    <li>Expect a flat early stretch. Do NOT change the lane in response to flat weeks — only change format/hook.</li>
+  </ul>
+
+  <!-- 9 -->
+  <h2 id="kill"><span class="num">9</span>Kill Criteria <span style="font-size:13px;color:var(--muted)">(when in doubt, don't post)</span></h2>
+  <p>Fast triage before the full §5 gate. Kill a draft if ANY of these:</p>
+  <ul class="bul">
+    <li>Can't name its single ICP or the good outcome it pairs Puru with</li>
+    <li>Has two ideas</li>
+    <li>Doesn't teach, provoke, or prove (doesn't change a behavior/belief)</li>
+    <li>Vague/curiosity-bait hook — doesn't say what the reader gets</li>
+    <li>Missing Proof · Promise · Plan, or assumes the reader already knows Puru</li>
+    <li>Off-lane or off-domain for Puru's authority (low SPCL)</li>
+    <li>Over ~180 words or wall-of-text</li>
+    <li>Opinion isn't genuinely Puru's</li>
+    <li>No image plan</li>
+    <li>Contains an unverified stat/quote</li>
+  </ul>
+  <div class="callout warn"><b>Don't get the same scar twice.</b> When a post under/over-performs for a reason, the team lead encodes the lesson as a new gate here or in §5 — we never relearn it.</div>
+
+  <footer>
+    Related context: <code>../hormozi/HORMOZI-PRINCIPLES.md</code> (the principles layer behind §5's gates),
+    <code>growth-analysis/sameer-bhardwaj-PLAYBOOK.md</code> (follower-growth teardown), and
+    <code>nvidia-q1-fy2027-post.md</code> (a format-winning example).
+    <br><br>This HTML is generated from <code>LINKEDIN-SOP.md</code> — edit the Markdown as the source of truth, then re-render.
+  </footer>
+</main>
+</div>
+</body>
+</html>
