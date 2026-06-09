@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sameer Bhardwaj LinkedIn Teardown → Growth Playbook</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2230; --ink:#e6edf3; --muted:#9aa7b4;
+    --line:#2a3340; --accent:#3b82f6; --accent2:#22c55e; --gold:#f5b301; --red:#f85149;
+    --radius:14px; --maxw:880px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px 120px}
+
+  /* Hero */
+  header.hero{
+    background:linear-gradient(135deg,#11233f 0%,#0d1117 60%);
+    border-bottom:1px solid var(--line);
+    padding:54px 22px 40px; margin-bottom:8px;
+  }
+  .hero-inner{max-width:var(--maxw); margin:0 auto}
+  .kicker{color:var(--accent); font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:12px; margin-bottom:14px}
+  h1{font-size:34px; line-height:1.15; margin:0 0 18px; letter-spacing:-.02em}
+  .sub{color:var(--muted); font-size:15.5px; max-width:660px}
+  .sub strong{color:var(--ink)}
+  .goal{
+    display:inline-flex; align-items:center; gap:10px; margin-top:22px;
+    background:rgba(34,197,94,.12); border:1px solid rgba(34,197,94,.4);
+    color:#86efac; padding:9px 16px; border-radius:999px; font-weight:600; font-size:14.5px;
+  }
+
+  /* Stat row */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:26px 0 8px}
+  .stat{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 14px; text-align:center}
+  .stat .n{font-size:24px; font-weight:800; letter-spacing:-.02em}
+  .stat .l{font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-top:4px}
+
+  /* TOC */
+  nav.toc{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 20px; margin:26px 0 38px;
+  }
+  nav.toc h4{margin:0 0 12px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+  nav.toc ol{margin:0; padding-left:20px; columns:2; column-gap:30px}
+  nav.toc li{margin:5px 0; break-inside:avoid}
+  nav.toc a{color:var(--ink); text-decoration:none; font-size:14.5px}
+  nav.toc a:hover{color:var(--accent); text-decoration:underline}
+
+  section{margin:0 0 14px; padding-top:14px}
+  h2{
+    font-size:22px; margin:42px 0 8px; padding-bottom:10px; letter-spacing:-.01em;
+    border-bottom:1px solid var(--line);
+  }
+  h2 .num{color:var(--accent); font-weight:800; margin-right:10px}
+  h3{font-size:16.5px; margin:24px 0 8px; color:var(--ink)}
+  p{margin:12px 0}
+  strong{color:#fff}
+  em{color:#d7e2ee}
+  a{color:var(--accent)}
+
+  /* callouts */
+  .quote{
+    border-left:3px solid var(--accent); background:var(--panel);
+    padding:14px 18px; border-radius:0 10px 10px 0; margin:18px 0; color:#d7e2ee; font-size:15.5px;
+  }
+  .quote.gold{border-left-color:var(--gold)}
+  .takeaway{
+    background:rgba(245,179,1,.08); border:1px solid rgba(245,179,1,.35);
+    border-radius:10px; padding:14px 18px; margin:18px 0;
+  }
+  .takeaway::before{content:"⚡ Takeaway"; display:block; color:var(--gold); font-weight:700; font-size:12.5px; letter-spacing:.05em; margin-bottom:6px}
+  .warn{
+    background:rgba(248,81,73,.08); border:1px solid rgba(248,81,73,.32);
+    border-radius:10px; padding:14px 18px; margin:18px 0;
+  }
+  .warn::before{content:"⚠ Reality check"; display:block; color:var(--red); font-weight:700; font-size:12.5px; letter-spacing:.05em; margin-bottom:6px}
+
+  /* tables */
+  .tbl{overflow-x:auto; margin:18px 0}
+  table{border-collapse:collapse; width:100%; font-size:14.5px; background:var(--panel); border-radius:10px; overflow:hidden}
+  th,td{padding:10px 13px; text-align:left; border-bottom:1px solid var(--line)}
+  th{background:var(--panel2); font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:700}
+  tr:last-child td{border-bottom:none}
+  td strong{color:var(--gold)}
+  tbody tr:hover{background:rgba(59,130,246,.06)}
+  .hl-row td{background:rgba(34,197,94,.07)}
+
+  ul,ol{margin:12px 0; padding-left:24px}
+  li{margin:7px 0}
+  code{background:#0a2540; border:1px solid #1d3a5f; color:#9ecbff; padding:2px 7px; border-radius:6px; font-size:13.5px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .tpl{display:block; margin:9px 0; padding:11px 14px; background:#0a2540; border:1px solid #1d3a5f; border-radius:8px; color:#cfe6ff; font-size:14px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; line-height:1.5}
+
+  hr{border:none; border-top:1px solid var(--line); margin:34px 0}
+  footer{color:var(--muted); font-size:13px; font-style:italic; margin-top:40px; padding-top:18px; border-top:1px solid var(--line)}
+
+  @media(max-width:640px){
+    h1{font-size:26px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    nav.toc ol{columns:1}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">LinkedIn Growth Teardown</div>
+    <h1>Sameer Bhardwaj → Our Growth Playbook</h1>
+    <p class="sub"><strong>Dataset:</strong> 268 posts scraped from his profile (52,296 followers), spanning ~330 days (11 months). <strong>Parsed:</strong> likes on 267, reposts on 244, comments on 261, images on 255. Every number below is from his actual post-level data — not estimates.</p>
+    <div class="goal">🎯 Goal: 9,100 → 20,000 followers in 30 days</div>
+    <div class="stats">
+      <div class="stat"><div class="n">268</div><div class="l">posts analyzed</div></div>
+      <div class="stat"><div class="n">5.7<span style="font-size:14px">/wk</span></div><div class="l">posting cadence</div></div>
+      <div class="stat"><div class="n">109k</div><div class="l">total likes</div></div>
+      <div class="stat"><div class="n">11<span style="font-size:14px">mo</span></div><div class="l">to 52k</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <nav class="toc">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#s0">The one-sentence answer</a></li>
+      <li><a href="#s1">The growth math</a></li>
+      <li><a href="#s2">Content taxonomy</a></li>
+      <li><a href="#s3">The repost engine</a></li>
+      <li><a href="#s4">Hook formulas</a></li>
+      <li><a href="#s5">The image system</a></li>
+      <li><a href="#s6">Psychology by action</a></li>
+      <li><a href="#s7">Copy vs his-alone</a></li>
+      <li><a href="#s8">Our 30-day plan</a></li>
+      <li><a href="#s9">Ready-to-use templates</a></li>
+    </ol>
+  </nav>
+
+  <section id="s0">
+    <h2><span class="num">0</span>The one-sentence answer</h2>
+    <div class="quote">He picked ONE narrow, high-status, high-pain niche (system design interviews at FAANG), posted ~6×/week for 11 months without ever drifting, and engineered a small number of <strong>repost-bait resource posts that he recycles every few weeks</strong> — because reposts, not likes, are what put him in front of strangers' feeds and convert to followers.</div>
+    <p>Likes are a vanity scoreboard. <strong>Reposts are the growth engine.</strong> Everything below is downstream of that.</p>
+  </section>
+
+  <section id="s1">
+    <h2><span class="num">1</span>The growth math <span style="font-size:14px;color:var(--muted);font-weight:400">— what actually moved followers</span></h2>
+    <div class="tbl">
+    <table>
+      <tbody>
+        <tr><td>Posting cadence</td><td><strong>5.7 posts/week</strong> (0.81/day), sustained 11 months</td></tr>
+        <tr><td>Median likes/post</td><td>253 (mean 409)</td></tr>
+        <tr><td>Median reposts/post</td><td>5 (mean 12)</td></tr>
+        <tr><td>Median comments/post</td><td>13</td></tr>
+        <tr><td>Total likes across corpus</td><td>109,138</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h3>Engagement ramp over time (median likes by age bucket)</h3>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>Months ago</th><th>Median likes</th></tr></thead>
+      <tbody>
+        <tr><td>11–12 (his start)</td><td>56</td></tr>
+        <tr><td>10–11</td><td>54</td></tr>
+        <tr><td>9–10</td><td>125</td></tr>
+        <tr class="hl-row"><td>7–9 (breakout)</td><td><strong>280–470</strong></td></tr>
+        <tr><td>0–3 (now)</td><td>253–454</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Read that table carefully: <strong>for his first ~2 months he was getting 50-ish likes per post.</strong> The inflection hit around month 8–9. The lesson is not "go viral." The lesson is <strong>survive the flat part</strong>. He posted ~50 times to a near-empty room before it compounded. Most people quit in that zone. We are already past it (9,100 followers), so our flat part is shorter.</p>
+  </section>
+
+  <section id="s2">
+    <h2><span class="num">2</span>Content taxonomy <span style="font-size:14px;color:var(--muted);font-weight:400">— what gets likes vs reposts</span></h2>
+    <p>Median engagement by content type (a post can be multiple types):</p>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>Type</th><th>n</th><th>med Likes</th><th>med Reposts</th><th>med Comments</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><strong>MEME / humor</strong></td><td>4</td><td><strong>938</strong></td><td>6</td><td>26</td><td>Like-magnet, cheap, rare</td></tr>
+        <tr class="hl-row"><td><strong>Resource list</strong></td><td>10</td><td><strong>754</strong></td><td><strong>60</strong></td><td>23</td><td><strong>Repost engine → followers</strong></td></tr>
+        <tr><td>Salary / money hook</td><td>122</td><td>322</td><td>7</td><td>14</td><td>Reliable workhorse</td></tr>
+        <tr><td>AI news reaction</td><td>22</td><td>312</td><td>9</td><td>16</td><td>Timely spikes</td></tr>
+        <tr><td>Personal story</td><td>14</td><td>176</td><td>3</td><td><strong>56–57</strong></td><td>Trust + algo (comments)</td></tr>
+        <tr><td>System design teaching</td><td>235</td><td>264</td><td>5</td><td>13</td><td>The bread-and-butter base</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Two columns matter most: <strong>reposts</strong> (reach to new people) and <strong>comments</strong> (algorithm boost + relationship). Notice resource lists win reposts by 10×, and personal stories win comments. He uses each tool for its job.</p>
+  </section>
+
+  <section id="s3">
+    <h2><span class="num">3</span>The repost engine <span style="font-size:14px;color:var(--red);font-weight:700">★ most important</span></h2>
+    <p>His single highest-leverage asset is <strong>one post template, recycled 9 times in 11 months:</strong></p>
+    <div class="quote gold"><em>"If I travel back to my Interview Days, I will study these 35 Articles to learn system design Fundamentals. These articles and videos will save you 50+ hours of hopping to resources and wasting time. 1. APIs: [link] 2. API Gateways: [link] …"</em></div>
+    <p>Every time he re-runs it, it prints reposts:</p>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>Post</th><th>When</th><th>Likes</th><th>Reposts</th></tr></thead>
+      <tbody>
+        <tr><td>#182</td><td>7mo ago</td><td>2,457</td><td><strong>148</strong></td></tr>
+        <tr><td>#99</td><td>4mo ago</td><td>1,487</td><td><strong>114</strong></td></tr>
+        <tr><td>#73</td><td>3mo ago</td><td>1,152</td><td><strong>142</strong></td></tr>
+        <tr><td>#43</td><td>1mo ago</td><td>773</td><td>88</td></tr>
+        <tr><td>#153</td><td>6mo ago</td><td>735</td><td>70</td></tr>
+        <tr><td>#24</td><td>1mo ago</td><td>563</td><td>51</td></tr>
+        <tr><td>…9 total</td><td></td><td>234–2,457</td><td>8–148</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h3>Why this works (the psychology)</h3>
+    <ol>
+      <li><strong>Save-ability</strong> — a numbered link list is a resource you <em>keep</em>. Reposting = bookmarking publicly.</li>
+      <li><strong>Cheap altruism</strong> — resharing it makes the resharer look helpful to <em>their</em> network at zero effort/risk. Reposting an opinion is risky (it's a stance); resharing a free resource list is pure upside.</li>
+      <li><strong>Each repost is a free ad</strong> — it exposes him to the resharer's entire follower graph. 148 reposts ≈ 148 new audiences. <strong>This is the follower-acquisition mechanism.</strong></li>
+      <li>The IMAGE on these is not the list — it's a <strong>Microsoft offer-letter screenshot ("Congratulations on your offer!")</strong>. The image sells the <em>dream</em>; the text delivers the <em>how</em>. Aspiration + utility = reshare.</li>
+    </ol>
+    <div class="takeaway">Build 2–3 genuinely useful, save-able resource lists in OUR niche (AI/ML system design, agent engineering, whatever we own). Post one. Wait 3–4 weeks. Post it again, lightly reworded, fresh image. Repeat. This is not spam — at his scale most of the audience is new each time, and the data proves it re-performs.</div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="num">4</span>Hook formulas <span style="font-size:14px;color:var(--muted);font-weight:400">— the first line is 80% of the result</span></h2>
+    <p>Median likes by hook pattern (first line):</p>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>Hook pattern</th><th>n</th><th>med Likes</th><th>mean</th></tr></thead>
+      <tbody>
+        <tr><td>Names a company in line 1</td><td>118</td><td>309</td><td>426</td></tr>
+        <tr><td>Second person ("You're in a…")</td><td>89</td><td>306</td><td><strong>477</strong></td></tr>
+        <tr><td>Contains a big number</td><td>95</td><td>275</td><td>429</td></tr>
+        <tr><td>First-person ("I noticed…")</td><td>24</td><td>268</td><td>446</td></tr>
+        <tr><td>Question hook</td><td>9</td><td>243</td><td><strong>493</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h3>His repeatable hook molds (steal these structures)</h3>
+    <ol>
+      <li><strong>Big-number shock + comparison</strong><br><em>"Stripe processes 13,000 requests per second. Cloudflare processes 50 million. Discord 4 billion messages/day. None of them drop yours."</em> (#3, 401 likes)</li>
+      <li><strong>Two-line contrarian flip</strong><br><em>"DSA gets you shortlisted. But it's System Design that gets you the offer."</em> (#201, 1,968 likes, 140 reposts)</li>
+      <li><strong>Second-person interview cold-open</strong><br><em>"You're in a system design interview at Meta. The interviewer asks you a tricky…"</em> (#177, 1,325 likes) — puts the reader <em>inside</em> the scene.</li>
+      <li><strong>Salary anchor</strong><br><em>"Anthropic is paying $320k (~2.9 CR+) base to its software engineers…"</em> (#66, 1,230 likes) — money is the highest-arousal hook in a career niche.</li>
+      <li><strong>Both-sides / "everyone is wrong"</strong><br><em>"Half the internet thinks this AI is dumb. The other half thinks it's correct. Both are right."</em> (#2)</li>
+    </ol>
+    <p><strong>Body structure he repeats:</strong> Hook (1–2 short lines, each own paragraph) → the mechanism or story → <strong>"what the senior engineer actually does"</strong> reframe → soft P.S. CTA. The "senior engineer / what separates them" framing is his signature lesson-delivery move.</p>
+  </section>
+
+  <section id="s5">
+    <h2><span class="num">5</span>The image system <span style="font-size:14px;color:var(--muted);font-weight:400">— 5 archetypes, none are infographics</span></h2>
+    <p>His images are not charts or stock photos. They are <strong>screenshots of "real" artifacts</strong> or <strong>AI-gen scenes that render the message</strong>. Dark-mode, mobile, high-contrast, thumb-stopping:</p>
+    <ol>
+      <li><strong>Offer-letter screenshot</strong> — "Congratulations on your offer!" Microsoft/Google email. Pure aspiration. (Pairs with resource lists.)</li>
+      <li><strong>Reddit/Twitter success story, yellow-highlighted</strong> — e.g. an r/leetcode "13 LPA → 45 LPA" post with the key lines underlined in highlighter. Social proof + his thesis underlined literally.</li>
+      <li><strong>AI-gen photoreal scene with the hook painted in</strong> — a boardroom with <em>"DSA shows your problem-solving. System Design shows your maturity"</em> on the wall + Amazon/Microsoft/Google logos. The text <em>becomes</em> the image. Reproducible with any image model.</li>
+      <li><strong>Borrowed tweet meme</strong> (dark mode) — his single most-liked post (2,577) is a reposted tweet meme. Cheap, relatable, devs love self-deprecation.</li>
+      <li><strong>Personal photo with faces + brand backdrop</strong> — him at the Google office. Used for trust/story posts. (Matches our own finding: a recognizable face drives engagement.)</li>
+    </ol>
+    <div class="takeaway"><strong>Image relevance verdict:</strong> the image almost never <em>teaches</em>. It triggers an emotion (envy of the offer, recognition of the meme, trust from the face) and the <em>text</em> does the teaching. Most people build the opposite — pretty diagram + thin text — and wonder why it dies.</div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="num">6</span>Why people engage <span style="font-size:14px;color:var(--muted);font-weight:400">— the psychology, by action</span></h2>
+    <ul>
+      <li><strong>Why they LIKE:</strong> aspiration (salary/offer), relatability (dev meme/pain), or "this made me feel smart." Low cost, high frequency.</li>
+      <li><strong>Why they REPOST:</strong> the content makes <em>them</em> look good to their network at zero risk → resource lists and "useful" carousels. Opinions don't get reshared; <em>gifts</em> do.</li>
+      <li><strong>Why they COMMENT:</strong> personal stories ("I quit Google", "I noticed a pattern at Google") and mild-controversy hooks. Comments are the strongest algo signal — he farms them with vulnerable first-person stories (#266 joined-Google note-takers: 57 comments).</li>
+      <li><strong>Status borrowing:</strong> "Ex-Google" in his headline + Google/FAANG names in every hook. He continuously borrows the credibility of brands bigger than him. We do the same (Ex-Google, Google Cloud Security).</li>
+    </ul>
+  </section>
+
+  <section id="s7">
+    <h2><span class="num">7</span>What to copy vs what's his alone</h2>
+    <h3>✅ Copy (transferable)</h3>
+    <ul>
+      <li>~6 posts/week, one narrow niche, never drift.</li>
+      <li>A recycled save-able resource list as the repost engine.</li>
+      <li>The 5 hook molds and the "what the senior engineer does" reframe.</li>
+      <li>Screenshot/AI-gen image archetypes over infographics.</li>
+      <li>Soft P.S. CTA to our product (he does layrs.me/tutor-topics — we do Lex AI).</li>
+      <li>Recycle proven winners every 3–4 weeks.</li>
+    </ul>
+    <h3>🚫 Don't blindly copy</h3>
+    <ul>
+      <li>His exact niche (system-design-interview) is saturated and his. Pick the adjacent lane we can own: <strong>AI/agent engineering, ML system design, FDE/applied-AI career</strong> — where we have real authority and less competition.</li>
+      <li>Volume without a niche lock just burns goodwill. The narrowness is the point.</li>
+    </ul>
+  </section>
+
+  <section id="s8">
+    <h2><span class="num">8</span>Our 30-day plan <span style="font-size:14px;color:var(--accent2);font-weight:700">9,100 → 20,000</span></h2>
+    <div class="warn">+10,900 followers in 30 days is aggressive (he took ~8 months for a comparable jump, from a colder start and without copying a proven playbook). Treat 20k as the <strong>stretch target</strong>; 14–16k is the realistic base case. The plan maximizes the repost engine — the only lever that scales to strangers fast.</div>
+    <p><strong>Cadence:</strong> 1 post/day, 30 posts. Best slots for our audience (India + US dev): 8–9am IST and a second test slot 7–8pm IST.</p>
+    <h3>The weekly mix (repeat 4×)</h3>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>Day</th><th>Type</th><th>Job</th></tr></thead>
+      <tbody>
+        <tr class="hl-row"><td>Mon</td><td><strong>Resource list</strong> (the repost engine)</td><td>reach new audiences</td></tr>
+        <tr><td>Tue</td><td>Big-number / system-design teaching</td><td>base credibility</td></tr>
+        <tr><td>Wed</td><td>Salary / market hook (AI/FDE comp)</td><td>high-arousal likes</td></tr>
+        <tr><td>Thu</td><td>Second-person interview / scenario</td><td>saves + comments</td></tr>
+        <tr><td>Fri</td><td>Personal story (Google, Lex AI, building)</td><td>comments + trust</td></tr>
+        <tr><td>Sat</td><td>AI-news reaction (timely)</td><td>spikes</td></tr>
+        <tr><td>Sun</td><td>Meme / relatable (borrowed or original)</td><td>like-magnet, low effort</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h3>The 3 repost-engine assets to build first (this week)</h3>
+    <ol>
+      <li><em>"If I were breaking into AI/Agent engineering in 2026, I'd study these 30 resources first…"</em> (numbered links, offer-letter-style image).</li>
+      <li><em>"35 system design + LLM-infra concepts every applied-AI engineer should know"</em> (link list).</li>
+      <li><em>"The 20 questions a Forward Deployed Engineer interview actually tests"</em> (ties to our FDE content already drafted).</li>
+    </ol>
+    <p>Post #1 in week 1, re-run a reworded version in week 4. Each is a follower printer.</p>
+    <h3>Image production</h3>
+    <p>Batch-make images in the 5 archetypes (offer screenshots, AI-gen "hook on the wall" scenes, highlighted Reddit/X screenshots, a few face photos). <strong>Don't make charts.</strong></p>
+    <h3>Daily ritual</h3>
+    <ul>
+      <li>Reply to every comment in the first 60–90 min (comment velocity = reach).</li>
+      <li>Repost-with-thought 1–2 relevant posts from bigger accounts to get on their radar.</li>
+      <li>Track each post's reposts (not just likes) in a sheet; double down on whatever gets reshared.</li>
+    </ul>
+    <div class="takeaway"><strong>Leading indicator to watch:</strong> if a post breaks <strong>&gt;15 reposts</strong>, it's a follower-acquisition event — clone its structure within the week.</div>
+  </section>
+
+  <section id="s9">
+    <h2><span class="num">9</span>Ready-to-use hook templates <span style="font-size:14px;color:var(--muted);font-weight:400">— fill in our niche</span></h2>
+    <code class="tpl">[Big company] processes [huge number] [things] per second. [Smaller comparison]. Here's the one decision that makes the difference: …</code>
+    <code class="tpl">DSA gets you shortlisted. But it's [our thing] that gets you the offer. → "Prompting gets you a demo. But it's [eval/system design] that gets you to production."</code>
+    <code class="tpl">You're in an [FDE / applied-AI] interview at [OpenAI]. They ask you to [scenario]. Most people [wrong move]. Here's what a senior does: …</code>
+    <code class="tpl">[Company] is paying $[X] to [role] who can [skill]. Here's exactly what that skill is: …</code>
+    <code class="tpl">If I were starting over in [AI engineering] today, I'd study these [N] resources first: 1. … 2. …  ← repost engine</code>
+  </section>
+
+  <footer>Built from post-level data in <code style="font-style:normal">sameer-bhardwaj-linkedin-dump/</code>. Parser + raw JSON reproducible. Numbers are his actuals as of the scrape.</footer>
+
+</div>
+</body>
+</html>

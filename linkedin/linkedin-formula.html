@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The LinkedIn Formula — Lex AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#efe9dd;
+    --ink:#16140f;
+    --accent:#d6431f;
+    --muted:#726a58;
+    --line:rgba(22,20,15,.14);
+    --display:'Fraunces',serif;
+    --body:'Newsreader',serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:18px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* grain + warm vignette */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(120% 80% at 80% -10%, rgba(214,67,31,.10), transparent 50%),
+      radial-gradient(100% 70% at 0% 110%, rgba(22,20,15,.08), transparent 55%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:64px 28px 80px}
+
+  /* staggered entrance */
+  .rise{opacity:0;transform:translateY(16px);animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  .kicker{
+    font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--accent);display:flex;align-items:center;gap:12px;
+  }
+  .kicker::after{content:"";height:1px;flex:1;background:var(--line)}
+
+  h1{
+    font-family:var(--display);font-weight:900;font-size:clamp(56px,11vw,128px);
+    line-height:.9;letter-spacing:-.02em;margin:18px 0 6px;
+  }
+  h1 em{font-style:italic;font-weight:500;color:var(--accent)}
+
+  /* the equation */
+  .eq{
+    margin:34px 0 8px;padding:30px 28px;border:1px solid var(--line);
+    border-radius:4px;background:rgba(255,255,255,.28);
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 18px;
+    text-align:center;
+  }
+  .eq .t{font-family:var(--display);font-weight:600;font-size:clamp(22px,4.4vw,40px);letter-spacing:-.01em}
+  .eq .op{font-family:var(--mono);font-size:clamp(20px,4vw,34px);color:var(--accent);font-weight:700}
+  .eq sup{font-family:var(--mono);font-size:.45em;color:var(--muted);font-weight:700;letter-spacing:.04em}
+  .legend{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--muted);text-align:center;margin-top:14px}
+
+  .sechead{
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--muted);margin:64px 0 22px;display:flex;align-items:center;gap:14px;
+  }
+  .sechead span{color:var(--accent)}
+  .sechead::after{content:"";height:1px;flex:1;background:var(--line)}
+
+  /* post anatomy */
+  .anatomy{display:grid;gap:0;border-top:1px solid var(--line)}
+  .row{
+    display:grid;grid-template-columns:130px 1fr;gap:24px;align-items:baseline;
+    padding:22px 6px;border-bottom:1px solid var(--line);
+  }
+  .row .num{font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--accent)}
+  .row h3{font-family:var(--display);font-weight:600;font-size:27px;line-height:1.1;margin-bottom:4px}
+  .row p{color:var(--ink);max-width:60ch}
+  .row p b{font-weight:500;background:linear-gradient(transparent 62%,rgba(214,67,31,.22) 0)}
+
+  /* laws grid */
+  .laws{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .law{background:var(--paper);padding:24px 22px;transition:background .25s}
+  .law:hover{background:#fff8ec}
+  .law .n{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+  .law h4{font-family:var(--display);font-weight:600;font-size:21px;margin:8px 0 6px;letter-spacing:-.01em}
+  .law p{font-size:16.5px;color:var(--muted);line-height:1.45}
+
+  /* format bar */
+  .formats{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  .fmt{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.4)}
+  .fmt.top{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .arrow{color:var(--accent);font-weight:700}
+  .fcap{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+
+  footer{
+    margin-top:72px;padding-top:24px;border-top:1px solid var(--line);
+    font-family:var(--display);font-style:italic;font-weight:500;font-size:24px;line-height:1.3;
+  }
+  footer span{color:var(--accent)}
+  .sig{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+
+  @media(max-width:620px){
+    .laws{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr;gap:6px}
+    .wrap{padding:48px 20px 64px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="kicker rise" style="animation-delay:.05s">Lex AI · LinkedIn Playbook</p>
+  <h1 class="rise" style="animation-delay:.12s">The <em>Formula</em></h1>
+
+  <div class="eq rise" style="animation-delay:.2s">
+    <span class="t">Reach</span>
+    <span class="op">=</span>
+    <span class="op">(</span>
+    <span class="t">Hook</span>
+    <span class="op">×</span>
+    <span class="t">First 90 min</span>
+    <span class="op">)</span><sup>CONSISTENCY</sup>
+  </div>
+  <p class="legend rise" style="animation-delay:.28s">// a great hook earns the click · early engagement earns the reach · consistency makes it compound</p>
+
+  <!-- POST ANATOMY -->
+  <p class="sechead rise" style="animation-delay:.05s"><span>01</span> Anatomy of a post</p>
+  <div class="anatomy">
+    <div class="row rise" style="animation-delay:.1s">
+      <div class="num">[ HOOK ]</div>
+      <div><h3>Stop the scroll</h3><p>Line one is the whole game. Only <b>~140 characters</b> show before “…see more.” Open a gap or raise a stake — never warm up.</p></div>
+    </div>
+    <div class="row rise" style="animation-delay:.16s">
+      <div class="num">[ VALUE ]</div>
+      <div><h3>One idea, well spaced</h3><p>Deliver a single payoff. Short lines, real white space, no link in the body — <b>native content gets distributed</b>, exits get throttled.</p></div>
+    </div>
+    <div class="row rise" style="animation-delay:.22s">
+      <div class="num">[ ASK ]</div>
+      <div><h3>End with a question</h3><p>Close with something answerable <b>in one breath</b>. Comments outrank likes — and you reply to every one in the first hour.</p></div>
+    </div>
+  </div>
+
+  <!-- LAWS -->
+  <p class="sechead rise"><span>02</span> Six laws</p>
+  <div class="laws rise" style="animation-delay:.05s">
+    <div class="law"><div class="n">01</div><h4>The first 90 minutes</h4><p>Early comments + dwell time tell the algorithm to expand reach. Be present and reply fast right after you post.</p></div>
+    <div class="law"><div class="n">02</div><h4>Comments &gt; reactions</h4><p>Write posts people <em>answer</em>, not just tap. A reply is worth far more distribution than a like.</p></div>
+    <div class="law"><div class="n">03</div><h4>Links in the comments</h4><p>Keep the post on-platform. Drop the URL in the first comment so reach isn’t penalised.</p></div>
+    <div class="law"><div class="n">04</div><h4>Show up 3–5× / week</h4><p>Consistency compounds. The feed rewards regulars; sporadic bursts reset your momentum.</p></div>
+    <div class="law"><div class="n">05</div><h4>Headline = promise</h4><p>Your headline is a value proposition, not a job title. State who you help and what changes.</p></div>
+    <div class="law"><div class="n">06</div><h4>Build in public</h4><p>Narrate the real work — what broke, what you chose, what you learned. Founders who show the mess win.</p></div>
+  </div>
+
+  <!-- FORMAT HIERARCHY -->
+  <p class="sechead rise"><span>03</span> Format hierarchy</p>
+  <div class="formats rise" style="animation-delay:.05s">
+    <span class="fmt top">Carousel / PDF</span><span class="arrow">▸</span>
+    <span class="fmt">Native video</span><span class="arrow">▸</span>
+    <span class="fmt">Text post</span><span class="arrow">▸</span>
+    <span class="fmt">Single image</span><span class="arrow">▸</span>
+    <span class="fmt">External link</span>
+  </div>
+  <p class="fcap">← more reach · same effort, better distribution · less reach →</p>
+
+  <footer class="rise">
+    Reach is rented. <span>Trust compounds.</span> Post like it.
+    <div class="sig">— Lex AI · linkedin-formula</div>
+  </footer>
+
+</div>
+</body>
+</html>

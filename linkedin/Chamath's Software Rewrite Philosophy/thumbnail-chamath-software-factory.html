@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chamath — Software That Makes The Software</title>
+  <style>
+    @font-face {
+      font-family: 'Instrument Serif';
+      font-style: italic;
+      src: url('.fonts/InstrumentSerif-Italic.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Instrument Serif';
+      font-style: normal;
+      src: url('.fonts/InstrumentSerif-Regular.ttf') format('truetype');
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { width: 1480px; height: 833px; overflow: hidden; background: #0d0d0d; }
+
+    .thumb {
+      width: 1480px; height: 833px; position: relative;
+      background: #0d0d0d; overflow: hidden;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* ---- Subject photo (Chamath) full-bleed ---- */
+    .subject-wrap { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+    .subject {
+      position: absolute; top: 0; left: 0;
+      width: 1480px; height: 833px; object-fit: cover; object-position: center top;
+      filter: saturate(0.9) contrast(1.08) brightness(0.86);
+    }
+    /* Left scrim: dark on the left (where text lives), clears over his face */
+    .scrim-left {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: linear-gradient(100deg,
+        rgba(13,13,13,0.97) 0%, rgba(13,13,13,0.93) 26%,
+        rgba(13,13,13,0.62) 48%, rgba(13,13,13,0.18) 68%, transparent 84%);
+    }
+    /* Bottom + top fades for grounding */
+    .scrim-bottom {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 300px; z-index: 2; pointer-events: none;
+      background: linear-gradient(to top, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.35) 55%, transparent 100%);
+    }
+    .scrim-top {
+      position: absolute; left: 0; right: 0; top: 0; height: 200px; z-index: 2; pointer-events: none;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.55) 0%, transparent 100%);
+    }
+    /* Coral rim light coming off the right, warms the cool photo + ties to brand */
+    .subject-rim {
+      position: absolute; inset: 0; z-index: 3; pointer-events: none;
+      background: linear-gradient(245deg, rgba(255,127,80,0.16) 0%, transparent 46%);
+      mix-blend-mode: screen;
+    }
+
+    /* ---- Atmosphere ---- */
+    .glow-coral {
+      position: absolute; width: 1000px; height: 1000px; top: -360px; left: -300px; z-index: 1;
+      background: radial-gradient(circle, rgba(255,127,80,0.22) 0%, rgba(255,127,80,0.06) 46%, transparent 72%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .glow-blue {
+      position: absolute; width: 820px; height: 820px; bottom: -340px; left: -240px; z-index: 1;
+      background: radial-gradient(circle, rgba(59,130,246,0.16) 0%, transparent 64%);
+      border-radius: 50%; pointer-events: none;
+    }
+
+    /* ---- Corner accents ---- */
+    .corner-tr { position: absolute; top: 44px; right: 44px; width: 64px; height: 64px;
+      border-top: 3px solid rgba(255,127,80,0.40); border-right: 3px solid rgba(255,127,80,0.40); z-index: 9; }
+    .corner-bl { position: absolute; bottom: 44px; left: 44px; width: 64px; height: 64px;
+      border-bottom: 3px solid rgba(255,127,80,0.30); border-left: 3px solid rgba(255,127,80,0.30); z-index: 9; }
+
+    /* ---- Eyebrow ---- */
+    .eyebrow {
+      position: absolute; top: 96px; left: 88px; z-index: 10;
+      display: flex; align-items: center; gap: 16px;
+      font-size: 20px; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase;
+      color: #FF7F50; opacity: 0.95;
+    }
+    .eyebrow .dot { width: 8px; height: 8px; background: #FF7F50; border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255,127,80,0.7); }
+
+    /* ---- Hero ---- */
+    .hero {
+      position: absolute; left: 84px; top: 188px; z-index: 8;
+      font-family: 'Instrument Serif', Georgia, serif; font-style: italic;
+      line-height: 0.92;
+    }
+    .hero .l1 { display: block; font-size: 150px; color: rgba(255,255,255,0.94); letter-spacing: -2px; }
+    .hero .l2 { display: block; font-size: 60px; color: rgba(255,255,255,0.50); letter-spacing: 0px;
+      margin: 14px 0 4px 6px; }
+    .hero .l3 { display: block; font-size: 176px; color: #FF7F50; letter-spacing: -3px;
+      text-shadow: 0 0 90px rgba(255,127,80,0.5), 0 0 34px rgba(255,127,80,0.35); }
+
+    /* ---- Subline (ties Musk -> Chamath) ---- */
+    .rule { position: absolute; left: 90px; top: 690px; width: 300px; height: 2px; z-index: 8;
+      background: linear-gradient(to right, #FF7F50, transparent); box-shadow: 0 0 14px rgba(255,127,80,0.35); }
+    .subline {
+      position: absolute; left: 90px; top: 716px; z-index: 8; max-width: 720px;
+      font-family: 'Instrument Serif', Georgia, serif; font-style: italic;
+      font-size: 40px; line-height: 1.12; color: rgba(255,255,255,0.66);
+    }
+    .subline .em { color: rgba(255,255,255,0.92); }
+
+    /* ---- Brand lockup: 8090 mark + url ---- */
+    .brand { position: absolute; bottom: 60px; right: 72px; z-index: 50;
+      display: flex; align-items: center; gap: 22px; }
+    .brand img { height: 46px; width: auto; display: block;
+      filter: drop-shadow(0 0 12px rgba(255,127,80,0.22)); opacity: 0.96; }
+    .brand .divider { width: 1px; height: 40px; background: rgba(255,127,80,0.45); }
+    .brand .url { font-size: 26px; letter-spacing: 0.10em; color: rgba(237,233,224,0.78); font-weight: 500; }
+
+    /* ---- Grain ---- */
+    .grain { position: absolute; inset: 0; pointer-events: none; z-index: 14; opacity: 0.34; }
+  </style>
+</head>
+<body>
+  <div class="thumb">
+
+    <div class="subject-wrap">
+      <img class="subject" src="Chamath-ProfessionalShot.webp" alt="Chamath">
+      <div class="subject-rim"></div>
+      <div class="scrim-top"></div>
+      <div class="scrim-left"></div>
+      <div class="scrim-bottom"></div>
+    </div>
+
+    <div class="glow-coral"></div>
+    <div class="glow-blue"></div>
+
+    <div class="corner-tr"></div>
+    <div class="corner-bl"></div>
+
+    <div class="eyebrow">
+      <span class="dot"></span>
+      <span>The Software Factory</span>
+    </div>
+
+    <div class="hero">
+      <span class="l1">software</span>
+      <span class="l2">that makes the</span>
+      <span class="l3">software</span>
+    </div>
+
+    <div class="rule"></div>
+    <div class="subline">
+      <span class="em">The machine that makes the machine —</span> for code.
+    </div>
+
+    <div class="brand">
+      <img src="8090-mark.png" alt="8090">
+      <span class="divider"></span>
+      <span class="url">8090.ai</span>
+    </div>
+
+    <!-- Grain -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="1480" height="833" class="grain" aria-hidden="true">
+      <filter id="g" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" result="n"/>
+        <feColorMatrix type="saturate" values="0" in="n" result="gn"/>
+        <feComposite in="gn" in2="SourceGraphic" operator="in"/>
+      </filter>
+      <rect width="1480" height="833" fill="rgba(255,255,255,0.06)" filter="url(#g)"/>
+    </svg>
+
+  </div>
+</body>
+</html>
