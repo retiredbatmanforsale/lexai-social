@@ -18,6 +18,19 @@ Sources to monitor · Trigger · Default Intent+angle · Format · **Needs from 
 
 ---
 
+## INSPIRATION SOURCES — the feed radar  ·  where new FLOW topics come from
+Standing feeds the lead skims to *generate* topics, not a topic itself. Each maps to the series it feeds and a default translation angle for **our** ICP (AI/ML engineers, India/Bangalore). Rule of mining: never repost the news — always answer **"what does this mean for an engineer, not an investor?"** (per Series 2 default).
+
+| Source | What it is | Skim cadence | Feeds | Default angle for our ICP |
+|--------|-----------|--------------|-------|---------------------------|
+| [The Batch](https://www.deeplearning.ai/the-batch) | Andrew Ng's weekly AI newsletter (research + industry, curated) | weekly | Series 1, 2, 5 | translate a frontier result → *"what an AI eng should actually learn / change from this"* (Teach), or a viz-able concept → Series 1 |
+| [TechCrunch — AI](https://techcrunch.com/category/artificial-intelligence/) | daily AI industry news (funding, IPOs, launches, drama) | daily | Series 2 | IPO / funding / launch / meme **trigger** → Provoke teardown "for engineers, not investors" |
+| [Chamath (Substack)](https://chamath.substack.com/) | contrarian VC macro + tech theses | per post | Series 2, 5 | borrow **or** contest his thesis → translate to an AI-eng career/skills POV (Provoke); attribute verbatim per §5 |
+
+> **How to use:** the lead pulls 1–3 candidate topics per skim, drops the raw link + a one-line angle into the relevant series below, then enriches into a full entry. Anything spiky/contrarian gets marked `!` (Provoke); anything personal gets `*` (Relate).
+
+---
+
 ## SERIES 1 — Curriculum Explainers  ·  Intent: **Teach**  ·  STOCK  ·  PROF viz = our moat
 The evergreen engine. Deep, recyclable, un-copyable because of PROF visualizations ("show what only you can show"). Also the fuel for the §6 repost engine (bundle into "the N concepts every AI engineer must know" carousels).
 
@@ -48,6 +61,13 @@ Stored as **watchers**, not a list. The lead matches incoming news to a watcher 
   - Default: **Provoke** — "what this means for *engineers*, not investors" (teardown, not a news report).
   - Format: news-as-story. Needs from Puru: his thesis (voice note, same day). Publish SLA: <24h while hot.
   - *Seeds already in mind:* Anthropic IPO, OpenAI IPO.
+  - **`!` SEEDED TOPIC — "It's not FAANG anymore, it's MANGOS."** *(Provoke)*
+    - Source: [TechCrunch, 2026-06-09](https://techcrunch.com/2026/06/09/its-not-faang-anymore-its-mangos/). The viral acronym swap as SpaceX, Anthropic & OpenAI line up 2026 IPOs.
+    - **MANGOS** = **M**eta · **A**nthropic · **N**vidia · **G**oogle · **O**penAI · **S**paceX — the AI/agentic cohort replacing FAANG (which led on streaming + e-commerce).
+    - Angle for our ICP: *the career target just moved.* "If you optimized your resume for FAANG, you prepped for the last war — here's what the MANGOS cohort actually screens AI/ML engineers for." Pairs with Series 4 (comp) and Series 5 (advice).
+    - Needs from Puru: his take — does the acronym hold? what genuinely changes for an AI/ML eng's career map vs. FAANG-era? (voice note).
+    - Truth-source: **cite TechCrunch + verify each IPO's status before posting** (comp/IPO claims get fact-checked). recyclable — refresh as the IPOs actually land.
+    - Note: overlaps the existing `spacex-ipo-anthropic-post.md` draft — reuse that thesis.
 - **Watcher: Model / product launch.**
   - Sources: lab release notes, HN front page.
   - Trigger: a frontier model or dev-tool ships.
